@@ -27,7 +27,7 @@ English Repo:https://github.com/labuladong/fucking-algorithm/tree/english
 This is a collection of personal algorithm training codes based on **JavaScript**, including:
 
 1. ["Learning JavaScript Data Structures and Algorithms"](https://www.amazon.ca/Learning-JavaScript-Data-Structures-Algorithms/dp/1788623878)
-2. All the questions of ["Sword Finger Offer"](https://leetcode-cn.com/problemset/lcof/). (in LeetCode)
+2. All the questions of ["Coding Interviews"](https://leetcode-cn.com/problemset/lcof/). (in LeetCode)
 3.  All the questions of the [**labuladong**](https://github.com/labuladong/fucking-algorithm) algorithm(**based on C++ / Java**)
 
 
