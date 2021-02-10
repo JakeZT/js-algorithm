@@ -64,7 +64,7 @@ This is a collection of personal algorithm training codes based on **JavaScript*
 
 ## Data Structures
 
-In [Data Structures](https://github.com/JakeZT/js-algorithm/tree/master/1%20%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84)
+In [Data Structures](https://github.com/JakeZT/js-algorithm/tree/master/0_%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84)
 
 ```js
     0_Node中Buffer对象.js
@@ -225,7 +225,7 @@ In   [3 算法框架_套路_labuladong](https://github.com/JakeZT/js-algorithm/t
 
 
 
-## Example([团灭股票买卖问题](https://github.com/JakeZT/js-algorithm/blob/master/3%20%E7%AE%97%E6%B3%95%E6%A1%86%E6%9E%B6_%E5%A5%97%E8%B7%AF_labuladong/0_%E5%BF%85%E5%A4%87%E7%AE%97%E6%B3%95%E6%A1%86%E6%9E%B6/%E5%9B%A2%E7%81%AD%E8%82%A1%E7%A5%A8%E4%B9%B0%E5%8D%96%E9%97%AE%E9%A2%98.js))
+## Example([团灭股票买卖问题](https://github.com/JakeZT/js-algorithm/blob/master/3_%E7%AE%97%E6%B3%95%E6%A1%86%E6%9E%B6_%E5%A5%97%E8%B7%AF_labuladong/0_%E5%BF%85%E5%A4%87%E7%AE%97%E6%B3%95%E6%A1%86%E6%9E%B6/%E5%9B%A2%E7%81%AD%E8%82%A1%E7%A5%A8%E4%B9%B0%E5%8D%96%E9%97%AE%E9%A2%98.js))
 
 ```js
 /* 
