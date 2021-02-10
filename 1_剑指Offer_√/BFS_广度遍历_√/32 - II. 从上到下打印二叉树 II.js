@@ -19,53 +19,52 @@
 ]
 */
 
-var levelOrder = function(root) {
-  // queue做临时存储使用
-  let queue = [];
-  let res = [];
-  if(root == null) {
-      return res;
-  }
-  queue.push(root);
-  while(queue.length != 0) {
-      //level做每层临时存储用 
-      let level = [];
-      const len = queue.length;
-      for(let i = 0; i < len; i++) {
-        // 核心不变
-          let treeNode = queue.shift();
-          // 左---右
-          level.push(treeNode.val);
-          if(treeNode.left != null) {
-              queue.push(treeNode.left);
-          }
-          if(treeNode.right != null) {
-              queue.push(treeNode.right);
-          }
-      }
-      // 每一层push进去
-      res.push(level);
-  }
-  return res;
-};
+var levelOrder = function (root) {
+	// queue做临时存储使用
+	let queue = []
+	let res = []
+	if (root == null) {
+		return res
+	}
+	queue.push(root)
+	while (queue.length != 0) {
+		//level做每层临时存储用
+		let level = []
+		const len = queue.length
+		for (let i = 0; i < len; i++) {
+			// 核心不变
+			let node = queue.shift()
+			// 左---右
+			level.push(node.val)
+			if (node.left != null) {
+				queue.push(node.left)
+			}
+			if (node.right != null) {
+				queue.push(node.right)
+			}
+		}
+		// 每一层push进去
+		res.push(level)
+	}
+	return res
+}
 
-const levelOrder=(root)=>{
-  if(!root) return [];
-  let res=[];
-  let queue=[];
-  queue.push(root);
-  while(queue.length!==0){
-    const total=queue.length;
-    let level=[];
-    for(let i=0;i<total;i++){
-      const cur=queue.shift();
-      level.push(cur.val)
-      // 齐步走，一次补充整层的数据
-      if(cur.left) queue.push(cur.left)
-      if(cur.right) queue.push(cur.right)
-    }
-    res.push(level);
-  }
-  return res;
-
+const levelOrder = (root) => {
+	if (!root) return []
+	let res = []
+	let queue = []
+	queue.push(root)
+	while (queue.length !== 0) {
+		const total = queue.length
+		let level = []
+		for (let i = 0; i < total; i++) {
+			const cur = queue.shift()
+			level.push(cur.val)
+			// 齐步走，一次补充整层的数据
+			if (cur.left) queue.push(cur.left)
+			if (cur.right) queue.push(cur.right)
+		}
+		res.push(level)
+	}
+	return res
 }

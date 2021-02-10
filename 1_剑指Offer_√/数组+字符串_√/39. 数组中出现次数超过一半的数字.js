@@ -5,27 +5,29 @@
 输出: 2
 */
 // const arr=[1, 2, 3, 2, 2, 2, 5, 4, 2]
-const arr=[10,9,9,9,10]
-var majorityElement = function(nums) {
-  if(nums.length===0) return 0
-let res,midLength=Math.ceil(nums.length/2),count;
-let temp=new Map();
-nums.map((item)=>{
-  if(!temp.has(item)){
-    count=1  
-  }else{
-    count=temp.get(item)
-    count++
-  }
-  temp.set(item,count)
-})
-const key=[...temp.keys()];
-key.some((item)=>{
-  if(temp.get(item)>=midLength){
-    res=item
-    return true
-  }
-})
-return res
-};
-console.log(majorityElement(arr));
+const arr = [10, 9, 9, 9, 10]
+var majorityElement = function (nums) {
+	if (nums.length === 0) return 0
+	let res,
+		midLength = Math.ceil(nums.length / 2),
+		count
+	let temp = new Map()
+	nums.map((item) => {
+		if (!temp.has(item)) {
+			count = 1
+		} else {
+			count = temp.get(item)
+			count++
+		}
+		temp.set(item, count)
+	})
+	const key = [...temp.keys()]
+	key.some((item) => {
+		if (temp.get(item) >= midLength) {
+			res = item
+			return true
+		}
+	})
+	return res
+}
+console.log(majorityElement(arr))
