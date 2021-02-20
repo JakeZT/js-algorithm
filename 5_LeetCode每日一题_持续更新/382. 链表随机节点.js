@@ -1,3 +1,4 @@
+// 382. 链表随机节点
 /* 
 给定一个单链表，随机选择链表的一个节点，并返回相应的节点值。保证每个节点被选的概率一样。
 
@@ -16,41 +17,39 @@ solution.getRandom();
 
 
 */
-//! [0, 1) 
-Math.random();
+//! [0, 1)
+Math.random()
 
-// ! 获取 [a,b)   -----用的最多      
-Math.floor((Math.random()*(b-a))+a)
+// ! 获取 [a,b)   -----用的最多
+Math.floor(Math.random() * (b - a) + a)
 
 // ! 获取 (a,b)
-Math.floor((Math.random()*(b-a))+a+1) //Math.random(b)本身就取不到b
+Math.floor(Math.random() * (b - a) + a + 1) //Math.random(b)本身就取不到b
 
-// ! 获取[a,b]随机数 
-Math.floor((Math.random()*(b+1-a))+a)  //保证能取到b 
+// ! 获取[a,b]随机数
+Math.floor(Math.random() * (b + 1 - a) + a) //保证能取到b
 
-// ! 获取 (a,b]  
-Math.floor( (Math.random()*(b+1-a))+a+1)
-
-
+// ! 获取 (a,b]
+Math.floor(Math.random() * (b + 1 - a) + a + 1)
 
 // 蓄水池抽样算法
 
-class Solution{
-  constructor(head){
-   this.head=head
-  }
-  getRandom=()=>{
-    let cur = this.head;
-    let res = cur.val;
-    let count =0;
-    while (cur){
-      count++;
-      let rand=Math.floor(Math.random()*(count) + 1) // 取[1,count]
-        if (rand===count){
-          res = cur.val;
-        }
-        cur = cur.next;
-    }
-    return res;
-  }
+class Solution {
+	constructor(head) {
+		this.head = head
+	}
+	getRandom = () => {
+		let cur = this.head
+		let res = cur.val
+		let count = 0
+		while (cur) {
+			count++
+			let rand = Math.floor(Math.random() * count + 1) // 取[1,count]
+			if (rand === count) {
+				res = cur.val
+			}
+			cur = cur.next
+		}
+		return res
+	}
 }

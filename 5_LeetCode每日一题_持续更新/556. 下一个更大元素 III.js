@@ -1,3 +1,4 @@
+// 556. 下一个更大元素 III
 /* 
 给定一个32位正整数 n，你需要找到最小的32位整数，其与 n 中存在的位数完全相同，并且其值大于n。如果不存在这样的32位整数，则返回-1。
 
@@ -26,27 +27,30 @@
 // 维护单调递增的栈
 
 function nextGreaterElement(n) {
-  let res = 0
-  let q = []
-  let str = Array.from(String(n))//字符串数组
+	let res = 0
+	let q = []
+	let str = Array.from(String(n)) //字符串数组
 
-  for (let i = str.length - 1; i >= 0; i--) {
-    if (q.length === 0 || str[i] >= q[q.length - 1]) q.push(str[i]) ;
-    else {
-      let count = 0
-      // 出栈，记录出栈的位数
-      while (q.length !== 0 && str[i] < q[q.length - 1]) {
-        q.pop()
-        count++
-      }
-      [str[i], str[i + count]] = [str[i + count], str[i]]  // swap元素
-      res = parseInt(
-        str.slice(0, i + 1).join('') +
-        str.slice(i + 1).reverse().join('')
-      ) // 反转右边
-      return res >= 2 ** 31 - 1 ? -1 : res
-    }
-  }
+	for (let i = str.length - 1; i >= 0; i--) {
+		if (q.length === 0 || str[i] >= q[q.length - 1]) q.push(str[i])
+		else {
+			let count = 0
+			// 出栈，记录出栈的位数
+			while (q.length !== 0 && str[i] < q[q.length - 1]) {
+				q.pop()
+				count++
+			}
+			;[str[i], str[i + count]] = [str[i + count], str[i]] // swap元素
+			res = parseInt(
+				str.slice(0, i + 1).join('') +
+					str
+						.slice(i + 1)
+						.reverse()
+						.join('')
+			) // 反转右边
+			return res >= 2 ** 31 - 1 ? -1 : res
+		}
+	}
 
-  return -1
+	return -1
 }

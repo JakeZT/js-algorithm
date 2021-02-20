@@ -1,4 +1,5 @@
-/* 
+// 19. 正则表达式匹配 copy
+/*
 请实现一个函数用来匹配包含'. '和'*'的正则表达式。
 字符'.'表示任意一个字符，
 而'*'表示它前面的字符可以出现任意次（含0次）。
@@ -19,7 +20,8 @@ p = "a*"
 在这里前面的元素就是 'a'。因此，字符串 "aa" 可被视为 'a' 重复了一次。
 
 */
-const  tar="aaa" ,reg="ab*ac*a"
+const tar = 'aaa',
+	reg = 'ab*ac*a'
 // var isMatch = function(target, reg) {
 // let pointer=0,flag=true;
 // for(let i=0;i<target.length;i++){
@@ -30,10 +32,10 @@ const  tar="aaa" ,reg="ab*ac*a"
 //   }
 //   if(reg.charAt(pointer)===target.charAt(i)){
 //     pointer++
-//     continue 
+//     continue
 //   }
 //   if(reg.charAt(pointer)==="."){
-//     pointer++ 
+//     pointer++
 //     continue}
 //   }
 
@@ -89,62 +91,60 @@ dp函数的定义如下：
 */
 // 用了一个哈希表memo消除重叠子问题
 
-
 /* 计算 p[j..] 是否匹配 s[i..] */
 // > s为字符串，  p为检测项
 
-
 function isMatch(s, p) {
-  // 指针 i，j 从索引 0 开始移动
-  return dp(s, 0, p, 0);
+	// 指针 i，j 从索引 0 开始移动
+	return dp(s, 0, p, 0)
 }
-function dp(s,i,p,j) {
-  let m = s.length, n = p.length;
-  // base case
-  //检测项到头了
-  if (j == n) {
-      return i == m;
-  }
-  // 字符串到头了？ 要分情况
-  if (i == m) {
-    // 如果能匹配空串，一定是字符和 * 成对儿出现
-      if ((n - j) % 2 == 1) return false;
-      // 检查是否为 x*y*z* 这种形式
-      for (; j + 1 < n; j += 2) {
-          if (p[j + 1] != '*')return false;
-      }
-      return true;
-  }
-  // base case结束
+function dp(s, i, p, j) {
+	let m = s.length,
+		n = p.length
+	// base case
+	//检测项到头了
+	if (j == n) {
+		return i == m
+	}
+	// 字符串到头了？ 要分情况
+	if (i == m) {
+		// 如果能匹配空串，一定是字符和 * 成对儿出现
+		if ((n - j) % 2 == 1) return false
+		// 检查是否为 x*y*z* 这种形式
+		for (; j + 1 < n; j += 2) {
+			if (p[j + 1] != '*') return false
+		}
+		return true
+	}
+	// base case结束
 
-  let memo=new Map();
-  // 记录状态 (i, j)，消除重叠子问题
-  let key =`${i}-${j}`
-  if (memo.has(key)) return memo.get(key);
-  let res = false;
-  if (s[i] == p[j] || p[j] == '.') {
-    // 匹配
-      if (j < n - 1 && p[j + 1] == '*') {
-        // 有 * 通配符，可以匹配 0 次或多次
-          res = dp(s, i, p, j + 2)
-             || dp(s, i + 1, p, j);
-      } else {
-         // 无 * 通配符，老老实实匹配 1 次
-          res = dp(s, i + 1, p, j + 1);
-      }
-  } else {
-    // 不匹配
-    if (j < n - 1 && p[j + 1] == '*') {
-      // 有 * 通配符，只能匹配 0 次
-          res = dp(s, i, p, j + 2);
-      } else {
-      // 无 * 通配符，匹配无法进行下去了
-          res = false;
-      }
-  }
-  // 将当前结果记入备忘录
-  memo.set(key,res);
-  return res;
+	let memo = new Map()
+	// 记录状态 (i, j)，消除重叠子问题
+	let key = `${i}-${j}`
+	if (memo.has(key)) return memo.get(key)
+	let res = false
+	if (s[i] == p[j] || p[j] == '.') {
+		// 匹配
+		if (j < n - 1 && p[j + 1] == '*') {
+			// 有 * 通配符，可以匹配 0 次或多次
+			res = dp(s, i, p, j + 2) || dp(s, i + 1, p, j)
+		} else {
+			// 无 * 通配符，老老实实匹配 1 次
+			res = dp(s, i + 1, p, j + 1)
+		}
+	} else {
+		// 不匹配
+		if (j < n - 1 && p[j + 1] == '*') {
+			// 有 * 通配符，只能匹配 0 次
+			res = dp(s, i, p, j + 2)
+		} else {
+			// 无 * 通配符，匹配无法进行下去了
+			res = false
+		}
+	}
+	// 将当前结果记入备忘录
+	memo.set(key, res)
+	return res
 }
 
-console.log(isMatch("aab","c*a*b"));
+console.log(isMatch('aab', 'c*a*b'))

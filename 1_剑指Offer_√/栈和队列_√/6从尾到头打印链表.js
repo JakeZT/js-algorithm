@@ -1,9 +1,10 @@
+// 6从尾到头打印链表
 /* 
 输入：head = [1,3,2]
 输出：[2,3,1]
 */
 // 注意这是链表结构
-const head=[1,3,2,100]
+const head = [1, 3, 2, 100]
 // const reversePrint =(head)=>Array.from(head.reverse())
 
 /* const reversePrint=(head)=>{
@@ -14,7 +15,6 @@ const head=[1,3,2,100]
   }
   return arr
 } */
-
 
 /**
  * Definition for singly-linked list.
@@ -27,15 +27,14 @@ const head=[1,3,2,100]
  * @param {ListNode} head
  * @return {number[]}
  */
-const reversePrint=(head)=>{
-  let arr = [];
-  let node = head;
-  while (node !== null) {
-      arr.unshift(node.val);
-      node = node.next;
-  }
-  return arr;
-
+const reversePrint = (head) => {
+	let arr = []
+	let node = head
+	while (node !== null) {
+		arr.unshift(node.val)
+		node = node.next
+	}
+	return arr
 }
 
-console.log(reversePrint(head));
+console.log(reversePrint(head))

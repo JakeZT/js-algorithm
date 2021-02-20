@@ -1,3 +1,4 @@
+// 29. 顺时针打印矩阵
 // 输入一个矩阵，按照从外向里以顺时针的顺序依次打印出每一个数字。
 /* 
 输入：matrix = [
@@ -8,36 +9,40 @@
 
                 输出：[1,2,3,4,8,12,11,10,9,5,6,7]
 */
-const matrix =[
-  [1,2,3,4],
-  [5,6,7,8],
-  [9,10,11,12]
+const matrix = [
+	[1, 2, 3, 4],
+	[5, 6, 7, 8],
+	[9, 10, 11, 12],
 ]
 
-var spiralOrder = function(matrix) {
-  if(matrix.length == 0) return [];
-  let left = 0, width = matrix[0].length - 1, top = 0, height = matrix.length - 1, x = 0;
-  let res = [];
-  let count=0
-  /* while循环中，一旦有一项超出设定值，则直接break */
-  while(true) {
-    for(let i = left; i <= width; i++){
-      console.log(top); //0
-      res[x++] = matrix[top][i]
-    };
-    if(++top > height) break; // x==4
-    for(let i = top; i <= height; i++){
-      res[x++] = matrix[i][width]
-    };
-    if(left > --width) break;
+var spiralOrder = function (matrix) {
+	if (matrix.length == 0) return []
+	let left = 0,
+		width = matrix[0].length - 1,
+		top = 0,
+		height = matrix.length - 1,
+		x = 0
+	let res = []
+	let count = 0
+	/* while循环中，一旦有一项超出设定值，则直接break */
+	while (true) {
+		for (let i = left; i <= width; i++) {
+			console.log(top) //0
+			res[x++] = matrix[top][i]
+		}
+		if (++top > height) break // x==4
+		for (let i = top; i <= height; i++) {
+			res[x++] = matrix[i][width]
+		}
+		if (left > --width) break
 
-    for(let i = width; i >= left; i--) res[x++] = matrix[height][i];
-    if(top > --height) break;
-    for(let i = height; i >= top; i--) res[x++] = matrix[i][left];
-    if(++left > width) break;
-  }
-  return res;
-};
+		for (let i = width; i >= left; i--) res[x++] = matrix[height][i]
+		if (top > --height) break
+		for (let i = height; i >= top; i--) res[x++] = matrix[i][left]
+		if (++left > width) break
+	}
+	return res
+}
 
 /* 
       for(let i = left; i <= width; i++) res[x++] = matrix[top][i];
@@ -53,8 +58,6 @@ var spiralOrder = function(matrix) {
       for(let i = height; i >= top; i--) res[x++] = matrix[i][left];
       if(++left > width) break;
 */
-
-
 
 /* var spiralOrder = function(matrix) {
   const res = []
@@ -119,4 +122,4 @@ var spiralOrder = function(matrix) {
 };
 
 */
-console.log(spiralOrder(matrix));
+console.log(spiralOrder(matrix))

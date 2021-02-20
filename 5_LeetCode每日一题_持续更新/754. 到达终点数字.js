@@ -1,3 +1,4 @@
+// 754. 到达终点数字
 function reachNumber(target) {
 	target = Math.abs(target)
 	let sum = 0

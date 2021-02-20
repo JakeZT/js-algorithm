@@ -1,3 +1,4 @@
+// 880. 索引处的解码字符串
 /* 
 给定一个编码字符串 S。请你找出 解码字符串 并将其写入磁带。解码时，从编码字符串中 每次读取一个字符 ，并采取以下步骤：
 
@@ -14,35 +15,34 @@
 */
 
 function decodeAtIndex(S, K) {
-  let j = 0 , len = 0;
-  let stack = new Array() // [index,  stringIndex]
-  for (let i = 0; i<S.length; i++) {
-    if (S[i] >= '0'&& S[i] <= '9') {
-      len *= Number(S[i])
-      stack.push([i, len])
-    } 
-    else len++ ;
-    //满足条件K了
-    if (len >= K) {
-      j=findIdx(stack,K,S)
-      break;
-    }
-  }
-  return String(S[j])
+	let j = 0,
+		len = 0
+	let stack = new Array() // [index,  stringIndex]
+	for (let i = 0; i < S.length; i++) {
+		if (S[i] >= '0' && S[i] <= '9') {
+			len *= Number(S[i])
+			stack.push([i, len])
+		} else len++
+		//满足条件K了
+		if (len >= K) {
+			j = findIdx(stack, K, S)
+			break
+		}
+	}
+	return String(S[j])
 }
 
 // 从栈顶开始，不断靠近下标K,
-const findIdx=(stack,K,S)=>{
-
-  while (stack.length !== 0 && stack[stack.length - 1][1] >= K) {
-    const cur=stack[stack.length - 1];//栈顶
-    let s=S[cur[0]], strLength = cur[1]; 
-    s =  strLength / s //倒推，计算前面重复的长度;
-    K = K % s //多出几位
-    if (K == 0) K = s  
-    stack.pop()
-  }
-  const cur=stack[stack.length - 1];
-  return stack.length !== 0 ? cur[0] +(K - cur[1]) : K-1; // K-1后是字母位数
-
+const findIdx = (stack, K, S) => {
+	while (stack.length !== 0 && stack[stack.length - 1][1] >= K) {
+		const cur = stack[stack.length - 1] //栈顶
+		let s = S[cur[0]],
+			strLength = cur[1]
+		s = strLength / s //倒推，计算前面重复的长度;
+		K = K % s //多出几位
+		if (K == 0) K = s
+		stack.pop()
+	}
+	const cur = stack[stack.length - 1]
+	return stack.length !== 0 ? cur[0] + (K - cur[1]) : K - 1 // K-1后是字母位数
 }

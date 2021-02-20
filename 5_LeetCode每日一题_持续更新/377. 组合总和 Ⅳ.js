@@ -1,3 +1,4 @@
+// 377. 组合总和 Ⅳ
 /* 
 给定一个由正整数组成且不存在重复数字的数组，找出和为给定目标正整数的组合的个数。
 nums = [1, 2, 3]
@@ -35,38 +36,38 @@ base case： dp[0] = 1: 想要达到第0级，只有不跳这一种方法。
 // ! 1.动态规划
 //nums = [1, 2, 3]
 // target = 4
-function combinationSum4(nums,target) {
-      let dp = new Array(target + 1).fill(0);
-      dp[0] = 1;
-      for (let step = 1; step <= target; step++) {
-          for (let num of nums) {
-              if (step - num >= 0) {
-                  dp[step]+=dp[step-num]; //当前台阶=不跳+由i-num位置一步跳过来
-              }
-          }
-      }
+function combinationSum4(nums, target) {
+	let dp = new Array(target + 1).fill(0)
+	dp[0] = 1
+	for (let step = 1; step <= target; step++) {
+		for (let num of nums) {
+			if (step - num >= 0) {
+				dp[step] += dp[step - num] //当前台阶=不跳+由i-num位置一步跳过来
+			}
+		}
+	}
 
-      return dp[target];
+	return dp[target]
 }
 
 // ! 2.深度搜索  ----容易超时
 
 // ! 3. 回溯  ---核心思想和dp一样
-const combinationSum4=(nums,target)=>{
-  if(nums.length==0) return 0;
-  nums.sort((a,b)=>a-b);
-  let save=new Map();
-  save.set(0,1);  //值--个数
-  return track(nums,target,save);
+const combinationSum4 = (nums, target) => {
+	if (nums.length == 0) return 0
+	nums.sort((a, b) => a - b)
+	let save = new Map()
+	save.set(0, 1) //值--个数
+	return track(nums, target, save)
 }
 
-var track=(nums ,target,save)=>{
-  if(save.has(target)) return save.get(target);
-  let temp=0;
-  for(let val of nums){
-      if(val>target) break;
-      temp+=track(nums,target-val,save);
-  }
-  save.set(target,temp);
-  return temp;
+var track = (nums, target, save) => {
+	if (save.has(target)) return save.get(target)
+	let temp = 0
+	for (let val of nums) {
+		if (val > target) break
+		temp += track(nums, target - val, save)
+	}
+	save.set(target, temp)
+	return temp
 }

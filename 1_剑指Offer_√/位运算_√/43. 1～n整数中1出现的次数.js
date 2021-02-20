@@ -1,3 +1,4 @@
+// 43. 1～n整数中1出现的次数
 /* 
 输入一个整数 n ，求1～n这n个整数的十进制表示中1出现的次数。
 
@@ -27,32 +28,31 @@
 // 3. 0~60中有 6 * f(1) + 10 = 16个
 // 4. 0~7中有 7 * f(0) + 1 = 1个
 // 所以5467中有2697个1
-var countDigitOne = function(n) {
+var countDigitOne = function (n) {
+	let list = [0, 1, 20, 300, 4000, 50000, 600000, 7000000, 80000000, 900000000, 10000000000]
+	let res = 0
+	let str = n + '' //1111;
+	const len = str.length
+	let power = Math.pow(10, len - 1) //3
+	let pointer = len - 1 //解析中的n  //3
+	for (let i = 0; i < len; i++) {
+		res += str[i] * list[pointer]
+		//没到最后一位
+		if (str[i] === '1' && i !== len - 1) {
+			//中间为1时后面的每一个数都要加一个1，再加上第一个1，
+			//比如12中10，11,12三个数的十位有3个1，需要加上，也就是2+1个1要加上
 
-  let list = [0,1,20,300,4000,50000,600000,7000000,80000000,900000000,10000000000];
-  let res = 0;
-  let str = n + '';//1111;
-  const len = str.length;
-  let power = Math.pow(10,len - 1);  //3
-  let pointer = len - 1; //解析中的n  //3
-  for(let i = 0; i < len; i++) {
-      res += str[i] * list[pointer]; 
-      //没到最后一位
-      if(str[i] === '1' && i !== len - 1) {
-      //中间为1时后面的每一个数都要加一个1，再加上第一个1，
-      //比如12中10，11,12三个数的十位有3个1，需要加上，也就是2+1个1要加上
-        
-        res += Number(str.slice(i + 1)) + 1;
-        // 到尾部数字时只 +1;
-      } else if(str[i] === '1' && i === len - 1) {
-        //解决末尾为1但未加上的bug
-        res += 1;
-      }
-      if(str[i] > 1) res += power;
-      power /= 10, pointer -=1;
-  }
-  return res;
-};
+			res += Number(str.slice(i + 1)) + 1
+			// 到尾部数字时只 +1;
+		} else if (str[i] === '1' && i === len - 1) {
+			//解决末尾为1但未加上的bug
+			res += 1
+		}
+		if (str[i] > 1) res += power
+		;(power /= 10), (pointer -= 1)
+	}
+	return res
+}
 
 // var countDigitOne = function(n) {
 // let count=0,str=''

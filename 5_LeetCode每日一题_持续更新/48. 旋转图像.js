@@ -1,4 +1,5 @@
 /* 
+48. 旋转图像
 首页将输入
 
 1 2 3
@@ -18,15 +19,14 @@
 9 6 3
  */
 
-
-const rotate = function(matrix) {
-  let martrixLength = matrix.length
-  for(let i=0; i < martrixLength; i++) {
-      for(let j=i; j < martrixLength; j++) {
-          let temp = matrix[i][j]
-          matrix[i][j] = matrix[j][i]
-          matrix[j][i] = temp
-      }
-  }
-  return matrix.map(item => item.reverse())
+const rotate = function (matrix) {
+	let martrixLength = matrix.length
+	for (let i = 0; i < martrixLength; i++) {
+		for (let j = i; j < martrixLength; j++) {
+			let temp = matrix[i][j]
+			matrix[i][j] = matrix[j][i]
+			matrix[j][i] = temp
+		}
+	}
+	return matrix.map((item) => item.reverse())
 }

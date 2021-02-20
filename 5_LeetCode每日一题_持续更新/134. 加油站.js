@@ -1,3 +1,4 @@
+// 134. 加油站
 /* 
 输入: 
 gas  = [1,2,3,4,5]
@@ -17,47 +18,49 @@ cost = [3,4,5,1,2]
 
 // 贪心算法   求最值
 function canCompleteCircuit(gas, cost) {
-  const len = gas.length;
-  let spare = 0;
-  let minSpare = Number.MAX_SAFE_INTEGER;
-  let minIndex = 0;
+	const len = gas.length
+	let spare = 0
+	let minSpare = Number.MAX_SAFE_INTEGER
+	let minIndex = 0
 
-  for (let i = 0; i < len; i++) {
-      spare += gas[i] - cost[i];
-      if (spare < minSpare) {
-          minSpare = spare;
-          minIndex = i;
-      }
-  }
-  return spare >= 0 ? (minIndex + 1) % len : -1
+	for (let i = 0; i < len; i++) {
+		spare += gas[i] - cost[i]
+		if (spare < minSpare) {
+			minSpare = spare
+			minIndex = i
+		}
+	}
+	return spare >= 0 ? (minIndex + 1) % len : -1
 }
-
 
 // 也可以想成环形的，最多走length-1步，但时间复杂度稍高些
 
 // 暴力迭代，最高复杂度 O(N^2);
 function canCompleteCircuit(gas, cost) {
-  const len = gas.length;
-  let spare=0,count=0;
-  let minIndex=Number.MAX_SAFE_INTEGER;
-  while(count<len){
-    // 退出条件: 到达第五步并且spare>=0;
-    for(let i=count,step=0;i<2*len;i++,step++){
-      if(step>len-1){break};
-      i=i%(len);
-      spare+=gas[i]-cost[i];
-      if (step==len-1 &&spare>=0) {
-        minIndex =Math.min(count,minIndex);
-        spare=0;
-        break;
-    }
-    // 没油了，退出，下一个
-      if(spare<0){
-        spare=0;
-        break;
-      }
-    }
-    count++;
-  }
-  return minIndex=minIndex<len ? minIndex : -1;
+	const len = gas.length
+	let spare = 0,
+		count = 0
+	let minIndex = Number.MAX_SAFE_INTEGER
+	while (count < len) {
+		// 退出条件: 到达第五步并且spare>=0;
+		for (let i = count, step = 0; i < 2 * len; i++, step++) {
+			if (step > len - 1) {
+				break
+			}
+			i = i % len
+			spare += gas[i] - cost[i]
+			if (step == len - 1 && spare >= 0) {
+				minIndex = Math.min(count, minIndex)
+				spare = 0
+				break
+			}
+			// 没油了，退出，下一个
+			if (spare < 0) {
+				spare = 0
+				break
+			}
+		}
+		count++
+	}
+	return (minIndex = minIndex < len ? minIndex : -1)
 }

@@ -1,3 +1,4 @@
+// 35. 复杂链表的复制
 /* 
 请实现 copyRandomList 函数，复制一个复杂链表。
 在复杂链表中，每个节点除了有一个 next 指针指向下一个节点，
@@ -9,19 +10,19 @@
 
 // ! 深度优先搜索
 
-function copyRandomList(head){
-  const visited = new Map();
-  const dfs=(head)=>{
-    if (head===null) return null
-    if(visited.has(head)){
-      return visited.get(head)
-    }
-    //  创建新结点
-   let copy =new Node(head.val,null,null)
-    visited.set(head,copy)
-    copy.next = dfs(head.next)
-    copy.random = dfs(head.random)
-    return copy
-  }
-  return dfs(head)
+function copyRandomList(head) {
+	const visited = new Map()
+	const dfs = (head) => {
+		if (head === null) return null
+		if (visited.has(head)) {
+			return visited.get(head)
+		}
+		//  创建新结点
+		let copy = new Node(head.val, null, null)
+		visited.set(head, copy)
+		copy.next = dfs(head.next)
+		copy.random = dfs(head.random)
+		return copy
+	}
+	return dfs(head)
 }

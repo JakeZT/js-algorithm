@@ -1,3 +1,4 @@
+// 66. 构建乘积数组
 /* 
 给定一个数组 A[0,1,…,n-1]，请构建一个数组 B[0,1,…,n-1]，
 其中 B 中的元素 B[i]=A[0]×A[1]×…×A[i-1]×A[i+1]×…×A[n-1]。不能使用除法。
@@ -17,19 +18,17 @@ B4  1   2   3   4    X     24
 
 */
 
-
-
-var constructArr = function(arr) {
-  let res = [];
-  let left = 1;
-  for (let i = 0; i < arr.length; i++) {
-      res[i] = left;
-      left *= arr[i];
-  } 
-  let right = 1;
-  for (let i = arr.length - 1; i >= 0; i--) {
-      res[i] *= right;
-      right *= arr[i];
-  }
-  return res;
-};
+var constructArr = function (arr) {
+	let res = []
+	let left = 1
+	for (let i = 0; i < arr.length; i++) {
+		res[i] = left
+		left *= arr[i]
+	}
+	let right = 1
+	for (let i = arr.length - 1; i >= 0; i--) {
+		res[i] *= right
+		right *= arr[i]
+	}
+	return res
+}

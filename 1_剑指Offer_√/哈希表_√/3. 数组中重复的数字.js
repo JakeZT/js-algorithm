@@ -1,29 +1,29 @@
+// 3. 数组中重复的数字
 /* 
 输入：
 [2, 3, 1, 0, 2, 5, 3]
 输出：2 或 3 
 */
 
-const findRepeatNumber=(arr)=>{
-  if(arr.length===0) return null
-  let origin=arr;
-  let set=new Set([...arr])
-  let setRes=[...set]
-  let res,j=0  //指针
-  origin.some((item,index,self)=>{
-    if(item!==setRes[j]){
-      res= item
-      return true
-    }
-    j++
-  })
+const findRepeatNumber = (arr) => {
+	if (arr.length === 0) return null
+	let origin = arr
+	let set = new Set([...arr])
+	let setRes = [...set]
+	let res,
+		j = 0 //指针
+	origin.some((item, index, self) => {
+		if (item !== setRes[j]) {
+			res = item
+			return true
+		}
+		j++
+	})
 
-  return res
+	return res
 }
 
-console.log(findRepeatNumber([2, 3, 1, 0, 5, 5, 3]));
-
-
+console.log(findRepeatNumber([2, 3, 1, 0, 5, 5, 3]))
 
 /* 
 资源浪费的解答：

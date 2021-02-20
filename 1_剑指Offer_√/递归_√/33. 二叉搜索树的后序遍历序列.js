@@ -1,3 +1,4 @@
+// 33. 二叉搜索树的后序遍历序列
 /* 
 输入一个整数数组，判断该数组是不是某二叉搜索树的后序遍历结果。
 如果是则返回 true，否则返回 false。
@@ -35,16 +36,16 @@ https://leetcode-cn.com/problems/er-cha-sou-suo-shu-de-hou-xu-bian-li-xu-lie-lco
 */
 // ! 递归分治
 var verifyPostOrder = function (postOrder) {
-  // 如果只有一个节点，直接返回true
-  if (postOrder.length <= 1) return true;
-  const root = postOrder[postOrder.length - 1]; // root 为末尾值
-  const idx = postOrder.findIndex((item) => item > root);
-  const left = postOrder.slice(0, idx);// 取到idx前一位
-  const right = postOrder.slice(idx, -1);
-  if (Math.min(root, ...right) !== root) return false
+	// 如果只有一个节点，直接返回true
+	if (postOrder.length <= 1) return true
+	const root = postOrder[postOrder.length - 1] // root 为末尾值
+	const idx = postOrder.findIndex((item) => item > root)
+	const left = postOrder.slice(0, idx) // 取到idx前一位
+	const right = postOrder.slice(idx, -1)
+	if (Math.min(root, ...right) !== root) return false
 
-  return verifyPostOrder(left) && verifyPostOrder(right)
-};
+	return verifyPostOrder(left) && verifyPostOrder(right)
+}
 
-const temp=[0,1,2,3,4,5,6,7,8];
-console.log(temp.slice(0,3));//index==3取不到 [ 0, 1, 2 ]
+const temp = [0, 1, 2, 3, 4, 5, 6, 7, 8]
+console.log(temp.slice(0, 3)) //index==3取不到 [ 0, 1, 2 ]

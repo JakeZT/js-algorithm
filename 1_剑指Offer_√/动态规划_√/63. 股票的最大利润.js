@@ -1,3 +1,4 @@
+// 63. 股票的最大利润
 /* 
 假设把某股票的价格按照时间先后顺序存储在数组中，请问买卖该股票一次可能获得的最大利润是多少？
 输入: [7,1,5,3,6,4]
@@ -12,15 +13,15 @@
 空间复杂度：O(1)。只需要记录最小花费和最大收益
 */
 
-var maxProfit = function(prices) {
-  let minCost = Number.MAX_SAFE_INTEGER;//和最大值比，获取小值
-  let maxVal = 0;
-  for(const price of prices) {
-      minCost = Math.min(minCost, price);
-      
-      maxVal = Math.max(maxVal, price - minCost);
-  }
-  return maxBenefit;
-};
-const arr=[7,1,5,3,6,4];
-console.log(maxProfit(arr));
+var maxProfit = function (prices) {
+	let minCost = Number.MAX_SAFE_INTEGER //和最大值比，获取小值
+	let maxVal = 0
+	for (const price of prices) {
+		minCost = Math.min(minCost, price)
+
+		maxVal = Math.max(maxVal, price - minCost)
+	}
+	return maxBenefit
+}
+const arr = [7, 1, 5, 3, 6, 4]
+console.log(maxProfit(arr))

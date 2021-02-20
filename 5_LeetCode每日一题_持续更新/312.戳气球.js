@@ -1,7 +1,7 @@
+// 312.戳气球
 /* 
 https://leetcode-cn.com/problems/burst-balloons/
 */
-
 // 可以用1.回溯法，但是肯定有重复的子问题。 2 动态规划
 
 // 状态，选择，状态方程
@@ -14,24 +14,19 @@ https://leetcode-cn.com/problems/burst-balloons/
 
 // dp[i][j]， 从i开始戳，到j结束的值
 
-
-
 var maxCoins = function (nums) {
-  let n = nums.length;
-  // 添加两侧的虚拟气球
-  let points = [1, ...nums, 1];
-  let dp = Array.from(Array(n + 2), () => Array(n + 2).fill(0));
-  // 最后一行开始遍历,从下往上
-  for (let i = n; i >= 0; i--) {
-    // 从左往右
-    for (let j = i + 1; j <= n + 1; j++) {
-      for (let k = i + 1; k < j; k++) {
-        dp[i][j] = Math.max(
-          dp[i][j],
-          points[j] * points[k] * points[i] + dp[i][k] + dp[k][j]
-        );
-      }
-    }
-  }
-  return dp[0][n + 1];
-};
+	let n = nums.length
+	// 添加两侧的虚拟气球
+	let points = [1, ...nums, 1]
+	let dp = Array.from(Array(n + 2), () => Array(n + 2).fill(0))
+	// 最后一行开始遍历,从下往上
+	for (let i = n; i >= 0; i--) {
+		// 从左往右
+		for (let j = i + 1; j <= n + 1; j++) {
+			for (let k = i + 1; k < j; k++) {
+				dp[i][j] = Math.max(dp[i][j], points[j] * points[k] * points[i] + dp[i][k] + dp[k][j])
+			}
+		}
+	}
+	return dp[0][n + 1]
+}

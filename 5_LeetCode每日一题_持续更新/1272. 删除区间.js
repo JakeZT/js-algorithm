@@ -1,3 +1,4 @@
+// 1272. 删除区间
 function removeInterval(intervals, toBeRemoved) {
   let toL = toBeRemoved[0], toR = toBeRemoved[1];
   let ans=[];

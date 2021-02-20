@@ -1,37 +1,56 @@
-
+// 天际线问题
 
 // 根据坐标排序
-const arrSort=(arr)=>arr.sort((a,b)=>a[0] != b[0] ? a[0] - b[0] : a[1] - b[1]);
-const remove =(arr, tar)=>{ //删除第一个相等的元素
-  let idx = -1;
-  arr.some((val,index)=>{if(val===tar){idx=index; return true}});
-  arr.splice(idx, 1);
-};
-const getSkyline =(buildings)=>{
-  let res = [], pq = [], pre = null;
-  for(let b of buildings) {
-      pq.push([b[0], -b[2]]); //左端点
-      pq.push([b[1],  b[2]]);//右端点
-  }
-  arrSort(pq); //按照坐标大小进行排序
-  let heights = [0]  //端点最低为0;
-  for(let h of pq) {
-      if(h[1] < 0) { heights.push(-h[1])} //加入左端点
-      else {remove(heights, h[1]);}  // 删除右端点
+const arrSort = (arr) => arr.sort((a, b) => (a[0] != b[0] ? a[0] - b[0] : a[1] - b[1]))
+const remove = (arr, tar) => {
+	//删除第一个相等的元素
+	let idx = -1
+	arr.some((val, index) => {
+		if (val === tar) {
+			idx = index
+			return true
+		}
+	})
+	arr.splice(idx, 1)
+}
+const getSkyline = (buildings) => {
+	let res = [],
+		pq = [],
+		pre = null
+	for (let b of buildings) {
+		pq.push([b[0], -b[2]]) //左端点
+		pq.push([b[1], b[2]]) //右端点
+	}
+	arrSort(pq) //按照坐标大小进行排序
+	let heights = [0] //端点最低为0;
+	for (let h of pq) {
+		if (h[1] < 0) {
+			heights.push(-h[1])
+		} //加入左端点
+		else {
+			remove(heights, h[1])
+		} // 删除右端点
 
-      let maxHeight = Math.max(...heights);
-      if(pre !== maxHeight) { 
-        res.push([h[0], maxHeight]);
-        pre = maxHeight;
-      }
-  }
-  return res;
-};
+		let maxHeight = Math.max(...heights)
+		if (pre !== maxHeight) {
+			res.push([h[0], maxHeight])
+			pre = maxHeight
+		}
+	}
+	return res
+}
 
-console.log(getSkyline([ [2,9,10], [3,7,15], [5, 12 ,12], [15, 20 ,10], [19 ,24 ,8] ]));
+console.log(
+	getSkyline([
+		[2, 9, 10],
+		[3, 7, 15],
+		[5, 12, 12],
+		[15, 20, 10],
+		[19, 24, 8],
+	])
+)
 
 // 用map做更慢， 因为如果数量巨大的话都得存取
-
 
 // 方法2:  100ms
 /* 

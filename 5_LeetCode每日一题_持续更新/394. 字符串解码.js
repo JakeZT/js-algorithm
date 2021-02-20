@@ -1,4 +1,4 @@
-
+// 394. 字符串解码
 /* 
 输入：s = "3[a]2[bc]"
 输出："aaabcbc"
@@ -8,12 +8,10 @@
 
 */
 
-function isLetters( str ){
-  var re=/^[A-Za-z]+$/;
-  if (str.match(re) == null)
-      return false;
-  else
-      return true;
+function isLetters(str) {
+	var re = /^[A-Za-z]+$/
+	if (str.match(re) == null) return false
+	else return true
 }
 
 /* 
@@ -21,21 +19,19 @@ function isLetters( str ){
 输出："abcabccdcdcdef"
 */
 // 遍历字符串，遇数和字母累加。遇[，数、字母入栈并清空。遇]，出栈并拼接
-var decodeString = function(str, number = '', word = '') {
-  let queue = [];
-  for(const val of str)
-      //数字 
-      if (!isNaN(val)) number += val
-      else if (val === '[') {
-          queue.push([word, number])
-          number = '', word = ''
-      }
-      else if (val === ']') {
-         let [w1, n1] = queue.pop()
-          word = w1 + word.repeat(n1);
-      }
-      else{
-        word += val
-      }
-  return word
-};
+var decodeString = function (str, number = '', word = '') {
+	let queue = []
+	//数字
+	for (const val of str)
+		if (!isNaN(val)) number += val
+		else if (val === '[') {
+			queue.push([word, number])
+			;(number = ''), (word = '')
+		} else if (val === ']') {
+			let [w1, n1] = queue.pop()
+			word = w1 + word.repeat(n1)
+		} else {
+			word += val
+		}
+	return word
+}

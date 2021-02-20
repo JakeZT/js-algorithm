@@ -1,3 +1,4 @@
+// 860. 柠檬水找零
 /* 
 在柠檬水摊上，每一杯柠檬水的售价为 5 美元。
 
@@ -19,18 +20,23 @@
 由于所有客户都得到了正确的找零，所以我们输出 true。
 */
 
-
-const lemonadeChange = function(bills) {
-  let n5=0, n10=0;
-  return bills.every(b =>{
-      if(b===5){ n5++}
-      else{
-          if(b===10){ n10++; n5--}
-          else{
-              if(n10) n10-- , n5--;
-              else{n5-=3}
-          }
-      }
-      return n5>=0
-  })
+const lemonadeChange = function (bills) {
+	let n5 = 0,
+		n10 = 0
+	return bills.every((b) => {
+		if (b === 5) {
+			n5++
+		} else {
+			if (b === 10) {
+				n10++
+				n5--
+			} else {
+				if (n10) n10--, n5--
+				else {
+					n5 -= 3
+				}
+			}
+		}
+		return n5 >= 0
+	})
 }

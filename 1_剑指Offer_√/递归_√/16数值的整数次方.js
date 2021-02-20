@@ -1,3 +1,4 @@
+// 16数值的整数次方
 /* 
 实现函数double Power(double base, int exponent)，求base的exponent次方。
 不得使用库函数，同时不需要考虑大数问题。
@@ -17,19 +18,19 @@
 输出: 0.25000
 解释: 2-2 = 1/22 = 1/4 = 0.25
 */
- var myPow = function(x, n) {
-  if(n===0) return Number(1).toFixed(5)
-  if(n===1) return x
-  // let first=Number(1).toFixed(5)
-  let init=x.toFixed(5);
-  let flag= n>0? true: false
-   n= n>0? n: Math.abs(n)
-    for(let i=2;i<=n;++i){
-      init=(init*(x))
-    }
-  init= flag===true? init : (1/init) 
-  return init
-}; 
+var myPow = function (x, n) {
+	if (n === 0) return Number(1).toFixed(5)
+	if (n === 1) return x
+	// let first=Number(1).toFixed(5)
+	let init = x.toFixed(5)
+	let flag = n > 0 ? true : false
+	n = n > 0 ? n : Math.abs(n)
+	for (let i = 2; i <= n; ++i) {
+		init = init * x
+	}
+	init = flag === true ? init : 1 / init
+	return init
+}
 // 位运算
 
 /* 
@@ -44,23 +45,23 @@
 */
 
 // console.log(myPow(2.10000,3));
-console.log(myPow(2,-2));
+console.log(myPow(2, -2))
 // console.log(myPow(2.00020,10));
 // console.log(myPow(34.00515,-3));
 
-var myPow = function(x, n) {
-  const isNegative = n < 0; // 是否是负指数
-  const result = absMyPow(x, Math.abs(n));
-  return isNegative ? 1 / result : result;
-};
+var myPow = function (x, n) {
+	const isNegative = n < 0 // 是否是负指数
+	const result = absMyPow(x, Math.abs(n))
+	return isNegative ? 1 / result : result
+}
 
 function absMyPow(base, exponent) {
-  if (exponent === 0) return 1;
-  if (exponent === 1)return base;
-  
-  const subResult = absMyPow(base, Math.floor(exponent / 2));
-  // 0==false ? 奇数: 偶数
-  return exponent % 2 ? subResult * subResult * base : subResult * subResult;
+	if (exponent === 0) return 1
+	if (exponent === 1) return base
+
+	const subResult = absMyPow(base, Math.floor(exponent / 2))
+	// 0==false ? 奇数: 偶数
+	return exponent % 2 ? subResult * subResult * base : subResult * subResult
 }
 /* 为false的值
 1、 "" 空的字符串

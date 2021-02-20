@@ -1,3 +1,4 @@
+// 44. 数字序列中某一位的数字
 /* 
 数字以0123456789101112131415…的格式序列化到一个字符序列中。在这个序列中，
 第5位（从下标0开始计数）是5，第13位是1，第19位是4，等等。
@@ -25,17 +26,17 @@ n 小于 90，说明是 2 位数字。
 计算结果在 num 中的位置：pos = 4 - 2 * (11 - 10) - 1 = 1
 */
 // ! n为下标
-var findNthDigit = function(n) {
-  for (let bit = 1; bit < 32; ++bit) {
-    const startNum = Math.pow(10, bit - 1);
-    const bitSum = 9 * startNum * bit;
-    if (n > bitSum) {
-      n -= bitSum;
-    } else {
-      // * n为下标
-      let num = startNum + Math.ceil(n / bit) - 1;
-      let position = n - bit * (num - startNum) - 1;
-      return num.toString(10)[position];
-      }
-  }
-};
+var findNthDigit = function (n) {
+	for (let bit = 1; bit < 32; ++bit) {
+		const startNum = Math.pow(10, bit - 1)
+		const bitSum = 9 * startNum * bit
+		if (n > bitSum) {
+			n -= bitSum
+		} else {
+			// * n为下标
+			let num = startNum + Math.ceil(n / bit) - 1
+			let position = n - bit * (num - startNum) - 1
+			return num.toString(10)[position]
+		}
+	}
+}

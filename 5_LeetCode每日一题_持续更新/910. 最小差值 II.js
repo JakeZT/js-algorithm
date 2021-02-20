@@ -1,3 +1,4 @@
+// 910. 最小差值 II
 /* 
 给你一个整数数组 A，对于每个整数 A[i]，可以选择 x = -K 或是 x = K （K 总是非负整数），并将 x 加到 A[i] 中。
 
@@ -39,20 +40,19 @@ K 的值是题目给出的固定值，因此如果我们想让上面这个算式
 链接：https://leetcode-cn.com/problems/smallest-range-ii/solution/tai-nan-liao-zhi-neng-hua-tu-ping-zhi-jue-by-user8/
 */
 
-
-const smallestRangeII = function(A, K) {
-	A.sort(function(a, b){
-		return a - b;
-	});
-	let len = A.length;
-  // 注意这里有个特殊情况，就是我们压根“不切这一刀”，而是把整个数组全部上移或下移，
-  //这也是一种策略。这种策略下的差值是 A[len - 1] - A[0]
-	let ans = A[len - 1] - A[0];
+const smallestRangeII = function (A, K) {
+	A.sort(function (a, b) {
+		return a - b
+	})
+	let len = A.length
+	// 注意这里有个特殊情况，就是我们压根“不切这一刀”，而是把整个数组全部上移或下移，
+	//这也是一种策略。这种策略下的差值是 A[len - 1] - A[0]
+	let ans = A[len - 1] - A[0]
 	for (let i = 0; i < len - 1; i++) {
-		let max = Math.max(A[i] + K, A[len - 1] - K);
-		let min = Math.min(A[0] + K, A[i + 1] - K);
-		let diff = max - min;
-		ans = Math.min(ans, diff);
+		let max = Math.max(A[i] + K, A[len - 1] - K)
+		let min = Math.min(A[0] + K, A[i + 1] - K)
+		let diff = max - min
+		ans = Math.min(ans, diff)
 	}
-	return ans;
+	return ans
 }

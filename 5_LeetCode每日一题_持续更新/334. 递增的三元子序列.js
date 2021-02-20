@@ -1,3 +1,4 @@
+// 334. 递增的三元子序列
 /* 
 
 给定一个未排序的数组，判断这个数组中是否存在长度为 3 的递增子序列。
@@ -21,14 +22,11 @@
 
 */
 
-const increasingTriplet = function(arr) {
-  let dp = new Array(arr.length).fill(1);
-  for (let i = 1; i < arr.length; i++) {
-      for (let j = 0; j < i; j++) 
-          if (arr[j] < arr[i])
-              dp[i] = Math.max(dp[i], dp[j]  + 1)  
-      if (dp[i] >= 3) return true
-  }
-  return false
-};
-
+const increasingTriplet = function (arr) {
+	let dp = new Array(arr.length).fill(1)
+	for (let i = 1; i < arr.length; i++) {
+		for (let j = 0; j < i; j++) if (arr[j] < arr[i]) dp[i] = Math.max(dp[i], dp[j] + 1)
+		if (dp[i] >= 3) return true
+	}
+	return false
+}
